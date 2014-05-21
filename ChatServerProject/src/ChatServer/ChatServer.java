@@ -18,15 +18,19 @@ public class ChatServer implements IChatServer {
   }
 
   public void addRoomAdmin(AdminUser admin, ArrayList permissions) {
+  
   }
 
   public void removeUser(int userID) {
+      users.remove(userID);
   }
 
   public void removeAllUser(int roomID) {
+      users.clear();
   }
 
   public void removeRoom(int roomID) {
+      rooms.remove(roomID);
   }
 
   public ArrayList getRooms() {
@@ -34,9 +38,11 @@ public class ChatServer implements IChatServer {
   }
 
   public void joinRoom(int roomID, int userID) {
+
   }
 
   public void removeAllRooms(ArrayList rooms) {
+      rooms.clear();
   }
 
   public void creatRestirctedRoom() {
