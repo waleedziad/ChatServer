@@ -7,13 +7,14 @@ public class ChatServer implements IChatServer {
 
   public ArrayList<AbstractRoom> rooms;
 
-  public ArrayList<AbstractUser> user;
+  public ArrayList<AbstractUser> users;
 
   public ChatServer chatServer;
 
   public IPersistanceMechanism persistanceMechanism;
 
   public void addUser(GeneralUser user) {
+      users.add(user);
   }
 
   public void addRoomAdmin(AdminUser admin, ArrayList permissions) {
@@ -29,7 +30,7 @@ public class ChatServer implements IChatServer {
   }
 
   public ArrayList getRooms() {
-  return null;
+  return rooms;
   }
 
   public void joinRoom(int roomID, int userID) {
@@ -51,7 +52,7 @@ public class ChatServer implements IChatServer {
   }
 
   public ChatServer getInstance() {
-  return null;
+  return chatServer;
   }
 
   public void loadPersistanceConfigurations() {
@@ -62,7 +63,7 @@ public class ChatServer implements IChatServer {
 
     @Override
     public void creatRestirctedRoom(String title, String desc, ArrayList allowdUsers) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
 }

@@ -7,17 +7,19 @@ public class AbstractUser {
   public String name;
 
   public void setID(int userID) {
+      id = userID ;
   }
 
   public int getID() {
-  return 0;
+  return id;
   }
 
   public void setName(String userName) {
+      name = userName ;
   }
 
   public String getName() {
-  return null;
+  return name;
   }
 
 }

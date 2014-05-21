@@ -7,16 +7,19 @@ public class ChatMessage {
   public String message;
 
   public void setSender(AbstractUser user) {
+      send = user ;
   }
 
   public AbstractUser getSender() {
-  return null;
+  return send ;
   }
 
   public void setMessage(String msg) {
+      message = msg ;
   }
 
-  public void getMessage() {
+  public String  getMessage() {
+      return message ;
   }
 
 }

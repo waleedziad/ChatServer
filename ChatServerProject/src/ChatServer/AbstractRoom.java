@@ -13,28 +13,31 @@ public class AbstractRoom {
   public int id;
 
   public void setTitle(String title) {
+      this.title = title ;
   }
 
   public String getTitle() {
-  return null;
+  return title;
   }
 
   public void setDecription(String desc) {
+      desciption = desc ;
   }
 
   public String getDesciption() {
-  return null;
+  return desciption;
   }
 
   public ArrayList getUsers() {
-  return null;
+  return users;
   }
 
   public void setID(int roomId) {
+      id = roomId ;
   }
 
   public int getID() {
-  return 0;
+  return id ;
   }
 
 }

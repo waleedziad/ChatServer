@@ -7,6 +7,9 @@ public class RestrictedRoom extends AbstractRoom {
   public ArrayList allowedUsers;
 
   public void RestrictedRoom(String title, String desc, ArrayList allowedUsers) {
+      this.title = title ;
+      desciption = desc ;
+      this.allowedUsers = allowedUsers ;
   }
 
 }
