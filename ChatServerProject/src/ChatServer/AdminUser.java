@@ -6,11 +6,12 @@ public class AdminUser extends AbstractUser {
 
   public ArrayList permissions;
 
-  public void addPermission() {
+  public void addPermission(String permission) {
+      permissions.add(permission);
   }
 
   public ArrayList<String> getPermissions() {
-  return null;
+  return permissions;
   }
 
 }
