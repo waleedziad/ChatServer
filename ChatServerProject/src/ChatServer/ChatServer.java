@@ -22,7 +22,10 @@ public class ChatServer implements IChatServer {
   }
 
   public void removeUser(int userID) {
-      users.remove(userID);
+      for(int i =0 ; i < users.size() ; i++)
+      {
+          if (users.get(i).id == userID ){ users.remove(i); break ;}
+      }
   }
 
   public void removeAllUser(int roomID) {
@@ -30,7 +33,10 @@ public class ChatServer implements IChatServer {
   }
 
   public void removeRoom(int roomID) {
-      rooms.remove(roomID);
+      for(int i =0 ; i < rooms.size() ; i++)
+      {
+          if (rooms.get(i).id == roomID ){ rooms.remove(i); break ;}
+      }
   }
 
   public ArrayList getRooms() {
