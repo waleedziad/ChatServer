@@ -30,6 +30,17 @@ public class ChatServer implements IChatServer {
   }
 
   public void joinRoom(int roomID, int userID) {
+	AbstractUser tmpUser = new AbstractUser();
+	for(int i =0 ; i < users.size() ; i++){
+		if (users.get(i).id == userID ){
+			tmpUser = users.get(i);
+			break;
+		}
+	}
+	for(int i =0 ; i < rooms.size() ; i++){
+		if (rooms.get(i).id == roomID )
+		rooms.get(i).users.add(tmpUser);
+	}
   }
 
   public void removeAllRooms(List rooms) {
