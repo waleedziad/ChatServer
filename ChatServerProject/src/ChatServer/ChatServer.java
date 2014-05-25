@@ -44,23 +44,45 @@ public class ChatServer implements IChatServer {
   }
 
   public void joinRoom(int roomID, int userID) {
-
+      AbstractUser tmpUser = new AbstractUser(); ;
+       for(int i =0 ; i < users.size() ; i++)
+      {
+          if (users.get(i).id == userID ){ tmpUser = users.get(i) ; break ;}
+      }
+       
+       for(int i =0 ; i < rooms.size() ; i++)
+      {
+          if (rooms.get(i).id == roomID ){ rooms.get(i).users.add(tmpUser) ;}
+      }
   }
 
   public void removeAllRooms(ArrayList rooms) {
       rooms.clear();
   }
 
-  public void creatRestirctedRoom() {
-  }
 
-  public void createGenralRoom() {
+  public void createGenralRoom(String title, String desc, ArrayList allowdUsers) {
+       AbstractRoom room = new GeneralRoom();
+      room.setTitle(title);
+      room.setDecription(desc);
+      room.users = allowdUsers ;
+      rooms.add(room);
   }
 
   public void sendMessage(ChatMessage message) {
   }
 
   public void leaveRoom(int roomID, int userID) {
+      AbstractUser tmpUser = new AbstractUser(); ;
+       for(int i =0 ; i < users.size() ; i++)
+      {
+          if (users.get(i).id == userID ){ tmpUser = users.get(i) ; break ;}
+      }
+       
+       for(int i =0 ; i < rooms.size() ; i++)
+      {
+          if (rooms.get(i).id == roomID ){ rooms.get(i).users.remove(tmpUser) ;}
+      }
   }
 
   public ChatServer getInstance() {
@@ -75,7 +97,11 @@ public class ChatServer implements IChatServer {
 
     @Override
     public void creatRestirctedRoom(String title, String desc, ArrayList allowdUsers) {
-        
+         AbstractRoom room = new RestrictedRoom();
+      room.setTitle(title);
+      room.setDecription(desc);
+      room.users = allowdUsers ;
+      rooms.add(room);
     }
 
 }

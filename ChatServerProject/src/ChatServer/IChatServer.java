@@ -22,7 +22,7 @@ public interface IChatServer {
 
   public void creatRestirctedRoom(String title, String desc, ArrayList allowdUsers);
 
-  public void createGenralRoom();
+  public void createGenralRoom(String title, String desc, ArrayList allowdUsers);
 
   public void sendMessage(ChatMessage message);
 
