@@ -40,4 +40,19 @@ public class FilePersistance implements IPersistanceMechanism {
   return null;
   }
 
+    @Override
+    public void addUser(int userID, AbstractUser user, int roomID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public AbstractUser getUser(int UserID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public AbstractRoom getRoom(int RoomID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
