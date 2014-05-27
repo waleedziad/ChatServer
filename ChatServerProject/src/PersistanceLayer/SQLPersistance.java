@@ -13,7 +13,7 @@ public class SQLPersistance implements IPersistanceMechanism {
   public SQLPersistance instance;
 
   
-  public void addUser(int userID, AbstractUser user) {
+  public void addUser(int userID, AbstractUser user, int roomID) {
   
   Connection conn = null;
      
@@ -33,7 +33,7 @@ public class SQLPersistance implements IPersistanceMechanism {
   
     Statement stmt = conn.createStatement() ;
     
-    String query = "INSERT INTO user (UserID,UserName,RoomID)\n" +"VALUES ("+userID+",'"+user.getName()+"',0);";
+    String query = "INSERT INTO user (UserID,UserName,RoomID)\n" +"VALUES ("+userID+",'"+user.getName()+"',"+roomID+");";
    
     stmt.executeUpdate(query);
    
@@ -384,14 +384,5 @@ public class SQLPersistance implements IPersistanceMechanism {
   return instance;
   }
 
-    @Override
-    public AbstractUser getUser() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public AbstractRoom getRoom() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+   
 }
