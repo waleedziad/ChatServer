@@ -8,7 +8,7 @@ public class AbstractRoom {
 
   public String desciption;
 
-  public ArrayList<AbstractUser> users;
+  public ArrayList<AbstractUser> users = new ArrayList<AbstractUser>();
 
   public int id;
 
@@ -28,8 +28,8 @@ public class AbstractRoom {
   return desciption;
   }
 
-  public ArrayList getUsers() {
-  return users;
+  public ArrayList<AbstractUser> getUsers() {
+      return users;
   }
 
   public void setID(int roomId) {
