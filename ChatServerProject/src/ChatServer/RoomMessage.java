@@ -7,13 +7,13 @@ public class RoomMessage extends ChatMessage {
   public ArrayList roomList;
 
   public void RoomMessage(AbstractUser sender, AbstractRoom room, String message) {
-      send = sender ;
+      this.sender = sender ;
       roomList.add(room);
       this.message = message ;
   }
 
   public void RoomMessage(AbstractUser sender, ArrayList<AbstractRoom> roomList, String message) {
-       send = sender ;
+       this.sender = sender ;
       this.roomList = roomList ;
       this.message = message ;
   }

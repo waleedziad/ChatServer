@@ -4,16 +4,35 @@
  */
 package chatserverproject;
 
+import ChatServer.ChatMessage;
+import ChatServer.ChatServer;
+import ChatServer.GeneralUser;
+
+
 /**
  *
  * @author sony
  */
 public class ChatServerProject {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
-        // TODO code application logic here
+       ChatServer server = new ChatServer() ; 
+       GeneralUser user = new GeneralUser();
+       user.setName("waleed");
+       user.setID(1);
+        GeneralUser user2 = new GeneralUser();
+       user2.setName("sender");
+       user2.setID(2);
+       ChatMessage m = new ChatMessage() ;
+       m.setMessage("the first message sent");
+       m.setSender(user2);      
+       System.out.println(m);
+       server.addUser(user);
+       server.addUser(user2);
+       server.sendMessage(m, user);
+       
+      server.listen(8080);   
+       
     }
 }

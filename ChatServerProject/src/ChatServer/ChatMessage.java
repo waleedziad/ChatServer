@@ -2,16 +2,16 @@ package ChatServer;
 
 public class ChatMessage {
 
-  public AbstractUser send;
+  public AbstractUser sender;
 
   public String message;
 
   public void setSender(AbstractUser user) {
-      send = user ;
+      sender = user ;
   }
 
   public AbstractUser getSender() {
-  return send ;
+  return sender ;
   }
 
   public void setMessage(String msg) {
@@ -21,5 +21,9 @@ public class ChatMessage {
   public String  getMessage() {
       return message ;
   }
-
+    @Override
+public String toString ()
+{
+    return "sender : " +sender.getName()+"  message : "+message+"";
+}
 }

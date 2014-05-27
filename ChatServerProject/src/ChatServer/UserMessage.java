@@ -7,13 +7,13 @@ public class UserMessage extends ChatMessage {
   public ArrayList<AbstractUser> recipients;
 
   public void UserMessage(AbstractUser sender, AbstractUser recipient, String message) {
-      send = sender ;
+      this.sender = sender ;
       recipients.add(recipient);
       this.message = message ;
   }
 
   public void UserMessage(AbstractUser sender, ArrayList<AbstractUser> recipientsList, String message) {
-       send = sender ;
+       this.sender = sender ;
       recipients = recipientsList ;
       this.message = message ;
   }

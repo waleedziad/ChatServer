@@ -24,7 +24,7 @@ public interface IChatServer {
 
   public void createGenralRoom(String title, String desc, ArrayList allowdUsers);
 
-  public void sendMessage(ChatMessage message);
+  public void sendMessage(ChatMessage message ,AbstractUser recipient);
 
   public void leaveRoom(int roomID, int userID);
 

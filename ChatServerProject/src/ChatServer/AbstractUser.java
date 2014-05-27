@@ -1,11 +1,19 @@
 package ChatServer;
 
+import java.util.ArrayList;
+
 public class AbstractUser {
 
   public int id;
-
+  
   public String name;
+  
+  public ArrayList<ChatMessage> Messages ;
 
+   AbstractUser ()
+   {
+       Messages=new ArrayList<ChatMessage>() ;
+   }
   public void setID(int userID) {
       id = userID ;
   }
