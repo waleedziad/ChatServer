@@ -182,7 +182,7 @@ public class ChatServer implements IChatServer {
            AbstractUser tmpUser = getUser(Integer.parseInt(arr[2]) );
            return tmpUser.Messages.toString() ; 
         }
-          else if (input.contains("create room genral"))
+          else if (input.contains("create room general"))
           {
               ArrayList<AbstractUser> tmpusers = new ArrayList<AbstractUser>();
               for(int i =5 ; i < arr.length ; i++ )tmpusers.add(getUser(Integer.parseInt(arr[i])));
@@ -246,7 +246,7 @@ public class ChatServer implements IChatServer {
          }
          catch(Exception e)
          {
-             return "unknown input";
+             return "exception !!";
          }
         return "unknown input";
     }
