@@ -15,7 +15,11 @@ public class AbstractRoom {
   public void setTitle(String title) {
       this.title = title ;
   }
-
+    @Override
+public String toString()
+{
+    return "title : "+title+" users : "+users.toString() +"id : "+id ; 
+}
   public String getTitle() {
   return title;
   }

@@ -19,8 +19,7 @@ public class ChatServerClient {
    
    int t = 10000000;
    out.println("get messages 1");
-   //System.out.println("request sent !!!"); 
-   //while(true){out.print("get messages 1");System.out.print("get messages 1");}
+  
    String s = in.readLine();
    
    System.out.println("Server said : " +s);

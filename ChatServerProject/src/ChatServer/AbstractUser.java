@@ -10,7 +10,7 @@ public class AbstractUser {
   
   public ArrayList<ChatMessage> Messages ;
 
-   AbstractUser ()
+   public AbstractUser ()
    {
        Messages=new ArrayList<ChatMessage>() ;
    }
@@ -29,5 +29,9 @@ public class AbstractUser {
   public String getName() {
   return name;
   }
-
+    @Override
+public String toString()
+{
+    return "name : "+name+" id : "+ id ;
+}
 }
