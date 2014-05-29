@@ -2,6 +2,7 @@ package PersistanceLayer;
 
 import ChatServer.AbstractRoom;
 import ChatServer.AbstractUser;
+import ExceptionLayer.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,7 +17,7 @@ public class SQLPersistance implements IPersistanceMechanism {
   {
       
   }
-  public void addUser(int userID, AbstractUser user, int roomID) {
+  public void addUser(int userID, AbstractUser user, int roomID) throws SQLException {
   
   Connection conn = null;
      
@@ -45,13 +46,15 @@ public class SQLPersistance implements IPersistanceMechanism {
     System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+        SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
  }
   
 
   
-  public AbstractUser getUser(int UserID) {
+  public AbstractUser getUser(int UserID) throws SQLException{
      
      Connection conn = null;
      AbstractUser User = new AbstractUser();
@@ -86,12 +89,14 @@ public class SQLPersistance implements IPersistanceMechanism {
     System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+       SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
       return User;
  }
   
-  public void deleteUser(int userID) {
+  public void deleteUser(int userID) throws SQLException{
     
     Connection conn = null;
      
@@ -118,13 +123,15 @@ public class SQLPersistance implements IPersistanceMechanism {
        System.out.println("Disconnected from database");
      } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+      SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
  }
   
   
 
-  public void addRoom(int userID, AbstractRoom room) {
+  public void addRoom(int userID, AbstractRoom room)throws SQLException {
      
      Connection conn = null;
      
@@ -153,13 +160,15 @@ public class SQLPersistance implements IPersistanceMechanism {
      System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+      SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
    }
   
   
 
-  public AbstractRoom getRoom(int RoomID) {
+  public AbstractRoom getRoom(int RoomID) throws SQLException{
      
      Connection conn = null;
      AbstractRoom Room = new AbstractRoom();
@@ -209,7 +218,9 @@ public class SQLPersistance implements IPersistanceMechanism {
     System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+      SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
      
    for (int i=0 ; i < UserIDs.size() ; i++)
@@ -223,7 +234,7 @@ public class SQLPersistance implements IPersistanceMechanism {
      return Room;  
   }
 
-  public void deleteRoom(int roomID) {
+  public void deleteRoom(int roomID)throws SQLException {
       
      Connection conn = null;
      
@@ -250,12 +261,14 @@ public class SQLPersistance implements IPersistanceMechanism {
        System.out.println("Disconnected from database");
      } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+       SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
   
   }
 
-  public ArrayList<AbstractRoom> getAllRooms() {
+  public ArrayList<AbstractRoom> getAllRooms()throws SQLException {
   
      Connection conn = null;
      String url = "jdbc:mysql://127.0.0.1/";
@@ -320,7 +333,9 @@ public class SQLPersistance implements IPersistanceMechanism {
     System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+       SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
      
     
@@ -330,7 +345,7 @@ public class SQLPersistance implements IPersistanceMechanism {
   
   
 
-  public ArrayList<AbstractUser> getAllUsers(int roomID) {
+  public ArrayList<AbstractUser> getAllUsers(int roomID) throws SQLException{
       
       Connection conn = null;
       
@@ -369,7 +384,9 @@ public class SQLPersistance implements IPersistanceMechanism {
     System.out.println("Disconnected from database");
       } 
       catch (Exception e) {
-       System.out.println("NO CONNECTION");
+       SQLException ex = new SQLException();
+           ex.setMessage(e.getMessage());
+           throw ex ;
      }
      
    for (int i=0 ; i < UserIDs.size() ; i++)

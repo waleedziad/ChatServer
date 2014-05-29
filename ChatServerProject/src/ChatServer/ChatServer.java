@@ -1,6 +1,7 @@
 package ChatServer;
 
 import PersistanceLayer.IPersistanceMechanism;
+import PersistanceLayer.PersistanceFActory;
 import PersistanceLayer.SQLPersistance;
 import com.sun.org.apache.xerces.internal.parsers.IntegratedParserConfiguration;
 import java.io.*;
@@ -9,13 +10,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ExceptionLayer.* ;
 
 
 public class ChatServer implements IChatServer {
 
-  public  static final int sqlPresistanceChoice = 1 ;
+  public  static final int filePresistanceChoice = 1 ;
+  
+  public  static final int sqlPresistanceChoice = 2 ;
      
-  public  static final int filePresistanceChoice = 2 ;
+ 
   public ArrayList<AbstractRoom> rooms;
   
   public ArrayList<AbstractUser> users;
@@ -26,13 +30,14 @@ public class ChatServer implements IChatServer {
   
   public IPersistanceMechanism persistanceMechanism;
   PersistanceLayer.PersistanceFActory factory ;
-  private ChatServer()
+  private ChatServer() throws Exception 
   {
+     factory = new PersistanceFActory();
      persistanceMechanism = factory.loadPersistanceMechanism(sqlPresistanceChoice);
      rooms = persistanceMechanism.getAllRooms();
      users = persistanceMechanism.getAllUsers(1);
   }
-  public void addUser(GeneralUser user) {
+  public void addUser(GeneralUser user) throws Exception {
       users.add(user);
       persistanceMechanism.addUser(user.id, user, 1);
   }
@@ -42,7 +47,7 @@ public class ChatServer implements IChatServer {
   
   }
 
-  public void removeUser(int userID) {
+  public void removeUser(int userID)throws Exception  {
       for(int i =0 ; i < users.size() ; i++)
       {
           if (users.get(i).id == userID ){ users.remove(i);  break ;}
@@ -56,7 +61,7 @@ public class ChatServer implements IChatServer {
       
   }
 
-  public void removeRoom(int roomID) {
+  public void removeRoom(int roomID) throws Exception {
       for(int i =0 ; i < rooms.size() ; i++)
       {
           if (rooms.get(i).id == roomID ){ rooms.remove(i); break ;}
@@ -69,7 +74,7 @@ public class ChatServer implements IChatServer {
   }
 
   @Override
-  public void joinRoom(int roomID, int userID) {
+  public void joinRoom(int roomID, int userID) throws Exception {
       AbstractUser tmpUser = new AbstractUser(); ;
        for(int i =0 ; i < users.size() ; i++)
       {
@@ -88,7 +93,7 @@ public class ChatServer implements IChatServer {
   }
 
 
-  public void createGenralRoom(String title, String desc, ArrayList allowdUsers) {
+  public void createGenralRoom(String title, String desc, ArrayList allowdUsers)throws Exception  {
        AbstractRoom room = new GeneralRoom();
       room.setTitle(title);
       room.setDecription(desc);
@@ -97,11 +102,19 @@ public class ChatServer implements IChatServer {
       persistanceMechanism.addRoom(1, room);
   }
 
-  public void sendMessage(ChatMessage message, AbstractUser recipient) {
-      
+  
+  @Override
+  public void sendMessage(ChatMessage message, AbstractUser recipient) throws MessageNotSentException {
+       
+      try{
       recipient.Messages.add(message);
-      
-      
+      }
+      catch(Exception e)
+      {
+           MessageNotSentException ex = new MessageNotSentException();
+           ex.setMessage("message not sent");
+           throw ex ;
+      }
   }
 
   public void leaveRoom(int roomID, int userID) {
@@ -117,7 +130,7 @@ public class ChatServer implements IChatServer {
       }
   }
 
-  public static ChatServer getInstance() {
+  public static ChatServer getInstance() throws Exception {
       if (chatServer == null)chatServer = new ChatServer();
   return chatServer;
   }
@@ -126,6 +139,17 @@ public class ChatServer implements IChatServer {
   }
 
   public void blockUser(int userID, int blockedUserID) {
+  }
+  public AbstractRoom getRoom(int roomID) throws RoomNotFoundException
+  {
+      
+      for(int i =0 ; i < rooms.size() ; i++)
+      {
+          if (rooms.get(i).id == roomID)return rooms.get(i) ;
+      }
+          RoomNotFoundException ex = new RoomNotFoundException();
+           ex.setMessage("room not found");
+           throw ex ;
   }
 
     @Override
@@ -136,14 +160,17 @@ public class ChatServer implements IChatServer {
       room.users = allowdUsers ;
       rooms.add(room);
     }
-    AbstractUser getUser(int userID)
+    AbstractUser getUser(int userID) throws UserNotFoundException
     {
          AbstractUser tmpUser = new AbstractUser(); ;
        for(int i =0 ; i < users.size() ; i++)
       {
-          if (users.get(i).id == userID ){ tmpUser = users.get(i) ; break ;}
+          if (users.get(i).id == userID ){ return users.get(i) ;}
       }
-       return tmpUser ;
+       
+       UserNotFoundException ex = new UserNotFoundException();
+           ex.setMessage("user not found");
+           throw ex ;
     }
     String parseInput(String input)
     {
@@ -208,6 +235,13 @@ public class ChatServer implements IChatServer {
           {
               String UserID = arr[2];
               return getUser(Integer.parseInt(UserID)).toString();
+          }
+         
+         else if (input.contains("get room"))
+          {
+              String RoomID = arr[2];
+              
+              return getRoom(Integer.parseInt(RoomID)).toString();
           }
          }
          catch(Exception e)

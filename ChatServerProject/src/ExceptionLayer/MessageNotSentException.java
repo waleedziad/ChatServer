@@ -2,11 +2,13 @@ package ExceptionLayer;
 
 public class MessageNotSentException extends Exception {
 
-  public void setMesasge(String msg) {
+  String message ;
+  public void setMessage(String msg) {
+      message = msg ;
   }
 
   public String getMessage() {
-  return null;
+  return "output message : "+message ;
   }
 
 }

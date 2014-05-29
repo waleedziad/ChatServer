@@ -2,11 +2,13 @@ package ExceptionLayer;
 
 public class RoomCapicityExceededException extends Exception {
 
-  public void setMesasge(String msg) {
+  String message ;
+  public void setMessage(String msg) {
+      message = msg ;
   }
 
   public String getMessage() {
-  return null;
+  return "output message : "+message ;
   }
 
 }

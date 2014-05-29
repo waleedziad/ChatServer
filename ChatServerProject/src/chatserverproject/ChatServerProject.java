@@ -16,7 +16,7 @@ import ChatServer.GeneralUser;
 public class ChatServerProject {
 
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
        ChatServer server = ChatServer.getInstance(); 
        GeneralUser user = new GeneralUser();
        user.setName("waleed");
