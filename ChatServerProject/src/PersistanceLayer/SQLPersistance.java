@@ -10,9 +10,12 @@ import java.util.ArrayList;
 
 public class SQLPersistance implements IPersistanceMechanism {
 
-  public SQLPersistance instance;
+  private static SQLPersistance instance;
 
-  
+  private SQLPersistance()
+  {
+      
+  }
   public void addUser(int userID, AbstractUser user, int roomID) {
   
   Connection conn = null;
@@ -380,8 +383,9 @@ public class SQLPersistance implements IPersistanceMechanism {
      return Users;  
   }      
      
-  public IPersistanceMechanism getInstance() {
-  return instance;
+  public static IPersistanceMechanism getInstance() {
+  if (instance == null)instance = new SQLPersistance();
+      return instance;
   }
 
    

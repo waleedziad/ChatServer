@@ -13,19 +13,22 @@ import java.util.logging.Logger;
 
 public class ChatServer implements IChatServer {
 
+  public  static final int sqlPresistanceChoice = 1 ;
+     
+  public  static final int filePresistanceChoice = 2 ;
   public ArrayList<AbstractRoom> rooms;
   
   public ArrayList<AbstractUser> users;
   
-  public ChatServer chatServer;
+  private static ChatServer chatServer;
   
   public ServerSocket serverSocket ;
   
   public IPersistanceMechanism persistanceMechanism;
-
-  public ChatServer()
+  PersistanceLayer.PersistanceFActory factory ;
+  private ChatServer()
   {
-     persistanceMechanism = new SQLPersistance();
+     persistanceMechanism = factory.loadPersistanceMechanism(sqlPresistanceChoice);
      rooms = persistanceMechanism.getAllRooms();
      users = persistanceMechanism.getAllUsers(1);
   }
@@ -65,6 +68,7 @@ public class ChatServer implements IChatServer {
   return rooms;
   }
 
+  @Override
   public void joinRoom(int roomID, int userID) {
       AbstractUser tmpUser = new AbstractUser(); ;
        for(int i =0 ; i < users.size() ; i++)
@@ -94,7 +98,9 @@ public class ChatServer implements IChatServer {
   }
 
   public void sendMessage(ChatMessage message, AbstractUser recipient) {
+      
       recipient.Messages.add(message);
+      
       
   }
 
@@ -111,7 +117,8 @@ public class ChatServer implements IChatServer {
       }
   }
 
-  public ChatServer getInstance() {
+  public static ChatServer getInstance() {
+      if (chatServer == null)chatServer = new ChatServer();
   return chatServer;
   }
 

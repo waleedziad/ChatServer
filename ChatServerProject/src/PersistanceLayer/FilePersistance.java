@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FilePersistance implements IPersistanceMechanism {
 
-  public SQLPersistance instance;
+  private static FilePersistance instance;
 
   public void addUser(int userID, AbstractUser user) {
   }
@@ -36,8 +36,9 @@ public class FilePersistance implements IPersistanceMechanism {
   return null;
   }
 
-  public IPersistanceMechanism getInstance() {
-  return null;
+  public static IPersistanceMechanism getInstance() {
+  if (instance == null)instance = new FilePersistance();
+      return instance ;
   }
 
     @Override

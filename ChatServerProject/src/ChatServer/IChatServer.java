@@ -28,7 +28,8 @@ public interface IChatServer {
 
   public void leaveRoom(int roomID, int userID);
 
-  public ChatServer getInstance();
+  
+  
 
   public void loadPersistanceConfigurations();
 

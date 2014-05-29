@@ -2,7 +2,9 @@ package PersistanceLayer;
 
 public class PersistanceFActory {
 
-  public void loadPersistanceMechanism() {
+  public IPersistanceMechanism loadPersistanceMechanism(int choice) {
+      if (choice == 1)return SQLPersistance.getInstance();
+      return FilePersistance.getInstance();
   }
 
 }

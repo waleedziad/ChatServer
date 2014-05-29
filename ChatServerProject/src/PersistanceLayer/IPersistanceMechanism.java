@@ -22,6 +22,7 @@ public interface IPersistanceMechanism {
 
   public ArrayList<AbstractUser> getAllUsers(int roomID);
 
-  public IPersistanceMechanism getInstance();
+
+  
 
 }
