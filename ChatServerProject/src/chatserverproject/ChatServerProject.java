@@ -14,12 +14,12 @@ import ChatServer.GeneralUser;
  * @author sony
  */
 public class ChatServerProject {
-
-   
+    
+    
     public static void main(String[] args) throws Exception {
        ChatServer server = ChatServer.getInstance(); 
        GeneralUser user = new GeneralUser();
-       user.setName("waleed");
+       user.setName("Admin");
        user.setID(1);
        GeneralUser user2 = new GeneralUser();
        user2.setName("sender");
