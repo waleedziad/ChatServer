@@ -65,8 +65,6 @@ public class AbstractRoomTest {
         user.setID(10);
         user.setName("Admin");
         instance.users.add(user);
-        ArrayList<AbstractUser> userList = new ArrayList<AbstractUser>();
-        instance.users = userList;
         String expResult = "title: "+title+" id: "+ID;
         String result = instance.toString();
         assertEquals(expResult, result);
@@ -146,7 +144,9 @@ public class AbstractRoomTest {
     public void testGetID() {
         System.out.println("getID");
         AbstractRoom instance = new AbstractRoom();
-        int expResult = 0;
+        int ID = 5;
+        instance.setID(ID);
+        int expResult = ID;
         int result = instance.getID();
         assertEquals(expResult, result);
     }
