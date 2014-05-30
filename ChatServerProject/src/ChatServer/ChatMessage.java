@@ -22,8 +22,7 @@ public class ChatMessage {
       return message ;
   }
     @Override
-public String toString ()
-{
-    return "sender : " +sender.getName()+"  message : "+message+"";
-}
+  public String toString (){
+        return "sender : " +sender.getName()+"  message : "+message+"";
+  }
 }
