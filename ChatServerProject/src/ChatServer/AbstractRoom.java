@@ -18,7 +18,7 @@ public class AbstractRoom {
     @Override
 public String toString()
 {
-    return "title : "+title+" users : "+users.toString() +"id : "+id ; 
+    return "title: "+title+" id: "+id ; 
 }
   public String getTitle() {
   return title;
