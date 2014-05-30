@@ -57,15 +57,17 @@ public class AbstractRoomTest {
     public void testToString() {
         System.out.println("toString");
         AbstractRoom instance = new AbstractRoom();
-        instance.setTitle("Test Title");
-        instance.setID(5);
+        String title = "Test Title";
+        instance.setTitle(title);
+        int ID = 5;
+        instance.setID(ID);
         AbstractUser user = new AbstractUser();
         user.setID(10);
         user.setName("Admin");
         instance.users.add(user);
         ArrayList<AbstractUser> userList = new ArrayList<AbstractUser>();
         instance.users = userList;
-        String expResult = "title: Test Title id: 5";
+        String expResult = "title: "+title+" id: "+ID;
         String result = instance.toString();
         assertEquals(expResult, result);
     }
@@ -77,8 +79,9 @@ public class AbstractRoomTest {
     public void testGetTitle() {
         System.out.println("getTitle");
         AbstractRoom instance = new AbstractRoom();
-        String expResult = "Test Title";
-        instance.setTitle("Test Title");
+        String title = "Test Title";
+        String expResult = title;
+        instance.setTitle(title);
         String result = instance.getTitle();
         assertEquals(expResult, result);
     }
@@ -101,8 +104,9 @@ public class AbstractRoomTest {
     public void testGetDesciption() {
         System.out.println("getDesciption");
         AbstractRoom instance = new AbstractRoom();
-        instance.setDecription("Test Description");
-        String expResult = "Test Description";
+        String description = "Test Description";
+        instance.setDecription(description);
+        String expResult = description;
         String result = instance.getDesciption();
         assertEquals(expResult, result);
     }

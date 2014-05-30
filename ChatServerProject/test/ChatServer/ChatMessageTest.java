@@ -85,8 +85,9 @@ public class ChatMessageTest {
     public void testGetMessage() {
         System.out.println("getMessage");
         ChatMessage instance = new ChatMessage();
-        instance.setMessage("Testing Hello");
-        String expResult = "Testing Hello";
+        String message = "Testing Hello";
+        instance.setMessage(message);
+        String expResult = message;
         String result = instance.getMessage();
         assertEquals(expResult, result);
     }
@@ -98,12 +99,14 @@ public class ChatMessageTest {
     public void testToString() {
         System.out.println("toString");
         ChatMessage instance = new ChatMessage();
-        instance.setMessage("Testing Hello");
+        String message = "Testing Hello";
+        instance.setMessage(message);
         AbstractUser user = new AbstractUser();
-        user.setName("Admin");
+        String name = "Admin";
+        user.setName(name);
         user.setID(1);
         instance.setSender(user);
-        String expResult = "sender : Admin  message : Testing Hello";
+        String expResult = "sender : "+name+"  message : "+message;
         String result = instance.toString();
         assertEquals(expResult, result);
     }
